@@ -22,3 +22,18 @@ const euclideanDistance = (a, b) =>
 euclideanDistance([1, 1], [2, 3]); // ~2.2361
 euclideanDistance([1, 1, 1], [2, 3, 2]); // ~2.4495
 ```
+
+But isn't this essentially the same as the following?
+
+```javascript
+const dist = ((a, b) => {
+    return Math.hypot(...b.map((k, i) => b[i] - a[i]));
+})
+```
+
+```javascript
+Object.keys([1, 2, 1, 1, 2]); // [0, 1, 2, 3, 4] 
+dist([1, 1, 1], [2, 3, 2]) === euclideanDistance([1, 1, 1], [2, 3, 2]); // true
+dist([1, 1], [2, 3]) === euclideanDistance([1, 1], [2, 3]); // true
+```
+Since `Object.keys` just returns the index of the array item, and it's already provided via `Array.prototype.map`?
